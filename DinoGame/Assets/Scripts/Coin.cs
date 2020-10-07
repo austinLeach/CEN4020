@@ -8,7 +8,6 @@ public class Coin : MonoBehaviour
         Astronaut astronaut = other.GetComponent<Astronaut>();
         if (astronaut) {
             GlobalVariables.coinsCollected++; //updates global coin count
-            Debug.Log(GlobalVariables.coinsCollected);
             Destroy(gameObject);    //destroys the coin so it can not be picked up multiple times
         }
     }

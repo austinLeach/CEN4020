@@ -6,4 +6,5 @@ public class GlobalVariables : MonoBehaviour
 {
     // This class contains any variable we would like to keep track off across different scenes.
     public static float coinsCollected = 0f;
+    public static bool babyDinoAcquired = false;
 }
