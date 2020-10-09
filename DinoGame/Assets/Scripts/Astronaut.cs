@@ -14,7 +14,7 @@ public class Astronaut : MonoBehaviour
     float horizontal; 
     float vertical;
 
-    Vector2 direction;
+    public Vector2 direction;
     Vector2 lastKnownDirection = Vector2.zero;
 
 
