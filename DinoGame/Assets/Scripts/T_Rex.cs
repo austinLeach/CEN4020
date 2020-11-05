@@ -14,8 +14,8 @@ public class T_Rex : MonoBehaviour
   Rigidbody2D rigidBody2D;
   //T-Rex variables
   public float speed = 11f;//movement speed
-  private float initRange = 10f;//range of triggering chase.
-  private float chaseRange = 20f;//range T-Rez will chase for.
+  public float initRange = 10f;//range of triggering chase.
+  public float chaseRange = 20f;//range T-Rez will chase for.
   private bool chase = false;//determines if T-Rex is chasing player
 
   void Start(){
