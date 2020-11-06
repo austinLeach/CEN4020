@@ -14,7 +14,7 @@ public class babyDino : MonoBehaviour
    
     void Start()
     {
-        astronaut = astronaut.GetComponent<Astronaut>();
+        astronaut.GetComponent<Astronaut>();
         rigidBody2D = GetComponent<Rigidbody2D>();
     }
 
