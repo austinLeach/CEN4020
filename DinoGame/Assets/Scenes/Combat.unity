@@ -3260,7 +3260,7 @@ GameObject:
   - component: {fileID: 1833510889}
   - component: {fileID: 1833510890}
   m_Layer: 0
-  m_Name: BossHealthBar
+  m_Name: dinoHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3365,9 +3365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01bc28134179c342ac56949a2a07e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossHealthSlider: {fileID: 1833510890}
+  dinoHealthSlider: {fileID: 1833510890}
   playerHealthSlider: {fileID: 1721095517}
-  Trex: {fileID: 630992779}
+  dino: {fileID: 630992779}
   currentState: 0
   fighting: 0
 --- !u!4 &2071204345

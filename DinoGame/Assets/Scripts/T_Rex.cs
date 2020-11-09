@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class T_Rex : MonoBehaviour
 {
@@ -23,10 +22,6 @@ public class T_Rex : MonoBehaviour
     astronaut = astronaut.GetComponent<Astronaut>();
     rigidBody2D = GetComponent<Rigidbody2D>();
     start = transform.position;
-
-    if (GlobalVariables.TRexDefeated) {
-      Destroy(gameObject);
-    }
   }
 
   void Update(){
@@ -50,15 +45,6 @@ public class T_Rex : MonoBehaviour
     }
     else{
       transform.position = Vector3.MoveTowards(transform.position, start, speed * Time.deltaTime);
-    }
-  }
-
-  void OnTriggerStay2D(Collider2D other) {
-    Astronaut player = other.GetComponent<Astronaut>();
-    if (player) {
-      Debug.Log("here");
-      GlobalVariables.FightingWith = "TRex";
-      SceneManager.LoadScene("Combat");
     }
   }
 }
