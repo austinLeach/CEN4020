@@ -3367,7 +3367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dinoHealthSlider: {fileID: 1833510890}
   playerHealthSlider: {fileID: 1721095517}
-  dino: {fileID: 0}
+  dino: {fileID: 630992779}
   currentState: 0
   fighting: 0
 --- !u!4 &2071204345
