@@ -9,4 +9,7 @@ public class GlobalVariables : MonoBehaviour
     public static bool babyDinoAcquired = false;
     public static string FightingWith;
     public static bool TRexDefeated = false;
+    public static bool HerbDefeated = false;
+    public static bool BirdDefeated = false;
+    public static bool MarioDefeated = false;
 }

@@ -18,13 +18,23 @@ public class T_Rex : MonoBehaviour
   public float initRange = 10f;//range of triggering chase.
   public float chaseRange = 20f;//range T-Rez will chase for.
   private bool chase = false;//determines if T-Rex is chasing player
+  public float dinoNumber;
 
   void Start(){
     astronaut = astronaut.GetComponent<Astronaut>();
     rigidBody2D = GetComponent<Rigidbody2D>();
     start = transform.position;
 
-    if (GlobalVariables.TRexDefeated) {
+    if (GlobalVariables.TRexDefeated && dinoNumber == 2) {
+      Destroy(gameObject);
+    }
+    else if (GlobalVariables.HerbDefeated && dinoNumber == 1) {
+      Destroy(gameObject);
+    }
+    else if (GlobalVariables.BirdDefeated && dinoNumber == 3) {
+      Destroy(gameObject);
+    }
+    else if (GlobalVariables.MarioDefeated && dinoNumber == 4) {
       Destroy(gameObject);
     }
   }
@@ -56,8 +66,19 @@ public class T_Rex : MonoBehaviour
   void OnTriggerStay2D(Collider2D other) {
     Astronaut player = other.GetComponent<Astronaut>();
     if (player) {
-      Debug.Log("here");
-      GlobalVariables.FightingWith = "TRex";
+      if (dinoNumber == 1) {
+        GlobalVariables.FightingWith = "Herb";
+      }
+      else if (dinoNumber == 2) {
+        GlobalVariables.FightingWith = "TRex";
+      }
+      else if (dinoNumber == 3) {
+        GlobalVariables.FightingWith = "Bird";
+      }
+      else if (dinoNumber == 4) {
+        GlobalVariables.FightingWith = "Mario";
+      }
+      
       SceneManager.LoadScene("Combat");
     }
   }

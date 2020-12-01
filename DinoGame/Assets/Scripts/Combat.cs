@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public enum combatStates { PlayersTurn, EnemiesTurn, Win, Loss }
 public enum FightingWith { TRex }; // can be added on to for more combat scenarios
@@ -11,8 +12,16 @@ public class Combat : MonoBehaviour
 
     public Slider bossHealthSlider;
     public Slider playerHealthSlider;
+    public GameObject FireBallImage;
+    bool isFireBall = false;
+    float fireBallTimer = 1f;
 
-    public GameObject Trex;
+    public GameObject Trex; // will be one of these for each combatant
+    public GameObject Herb;
+    public GameObject Bird;
+    public GameObject Mario;
+
+    public TMP_Text dialogue;
 
     bool stunned = false;
 
@@ -26,20 +35,60 @@ public class Combat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentState = combatStates.PlayersTurn;
+        Trex.GetComponent<Renderer>().enabled = false; 
+        Herb.GetComponent<Renderer>().enabled = false;
+        Bird.GetComponent<Renderer>().enabled = false;
+        Mario.GetComponent<Renderer>().enabled = false; 
+        FireBallImage.GetComponent<Renderer>().enabled = false;
+        
+        Debug.Log(GlobalVariables.FightingWith);
+
+        currentState = combatStates.PlayersTurn;    //currently only TRex is an option so it will always load the TRex fight
         if (GlobalVariables.FightingWith == "TRex") {
             setMaxBossHealth(10);
             Trex.GetComponent<Renderer>().enabled = true;   // used so the Trex sprite will render
+        }
+        else if (GlobalVariables.FightingWith == "Herb") {
+            setMaxBossHealth(10);
+            Herb.GetComponent<Renderer>().enabled = true;   
+            Debug.Log("fdhas");
+        }
+        if (GlobalVariables.FightingWith == "Bird") {
+            setMaxBossHealth(10);
+            Bird.GetComponent<Renderer>().enabled = true;   
+        }
+        if (GlobalVariables.FightingWith == "Mario") {
+            setMaxBossHealth(10);
+            Mario.GetComponent<Renderer>().enabled = true;  
         }
         
         setMaxPlayerHealth(10);
     }
 
+    void Update() {
+        Timer(ref isFireBall, ref fireBallTimer);
+        if (!isFireBall) {
+            FireBallImage.GetComponent<Renderer>().enabled = false;
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        // checks if won or loss
         if (currentState == combatStates.Win) {
-            GlobalVariables.TRexDefeated = true;
+            if (GlobalVariables.FightingWith == "TRex") {
+                GlobalVariables.TRexDefeated = true;
+            }
+            else if (GlobalVariables.FightingWith == "Herb") {
+                GlobalVariables.HerbDefeated = true;
+            }
+            if (GlobalVariables.FightingWith == "Bird") {
+                GlobalVariables.BirdDefeated = true; 
+            }
+            if (GlobalVariables.FightingWith == "Mario") {
+                GlobalVariables.MarioDefeated = true;  
+            }
             SceneManager.LoadScene("SampleScene");
         }
         if (currentState == combatStates.Loss) {
@@ -55,8 +104,15 @@ public class Combat : MonoBehaviour
             currentState = combatStates.Win;
         }
         else {
+            // changes to the enemies turn
             currentState = combatStates.EnemiesTurn;
-            if (fighting == FightingWith.TRex)
+            if (GlobalVariables.FightingWith == "TRex")
+                StartCoroutine(TRexTurn());
+            else if (GlobalVariables.FightingWith == "Herb")
+                StartCoroutine(TRexTurn());
+            else if (GlobalVariables.FightingWith == "Bird")
+                StartCoroutine(TRexTurn());
+            else if (GlobalVariables.FightingWith == "Mario")
                 StartCoroutine(TRexTurn());
         }
     }
@@ -66,6 +122,11 @@ public class Combat : MonoBehaviour
        
         if (!stunned) {
             setPlayerHealth(1); // default attack
+            dialogue.text = "TRex stomped";
+        }
+        else {
+            dialogue.text = "TRex was not able to attack";
+            stunned = false;
         }
 
 
@@ -73,10 +134,12 @@ public class Combat : MonoBehaviour
             currentState = combatStates.Loss;
         }
         else {
+            // changes back to the players turn and waits for a option to be selected
             currentState = combatStates.PlayersTurn;
         }
     }
 
+    // functions are used to manipulate health and the healthbar on screen
     public void setMaxBossHealth(int health) {
         bossHealthSlider.maxValue = health;
         bossHealthSlider.value = health;
@@ -96,14 +159,40 @@ public class Combat : MonoBehaviour
     }
 
     public void Stun() {
-        if (Random.Range(0, 100) < 90) 
+        // 90% accuracy
+        if (currentState == combatStates.EnemiesTurn) {
+            return;
+        }
+        if (Random.Range(0, 100) < 90) {
             stunned = true;
+            dialogue.text = "Stunned";
+        }
+        else {
+            dialogue.text = "Stun Missed";
+        }
+        PlayerAttacks(0);
     }
 
     public void FireBall() {
         if (currentState == combatStates.EnemiesTurn) {
             return;
         }
-        PlayerAttacks(2);
+        isFireBall=true;
+        fireBallTimer = 0.5f;
+        FireBallImage.GetComponent<Renderer>().enabled = true;
+        dialogue.text = "Fireball used";
+        PlayerAttacks(2);   // deals 2 damage to the enemy
+    }
+    public bool Timer(ref bool isChanging, ref float timer)
+    {
+        if (isChanging)
+        {
+          timer -= Time.deltaTime;
+          if (timer < 0)
+          {
+            isChanging = false;
+          }
+        }
+        return isChanging;
     }
 }
