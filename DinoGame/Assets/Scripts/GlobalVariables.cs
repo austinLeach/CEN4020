@@ -8,5 +8,9 @@ public class GlobalVariables : MonoBehaviour
     public static float coinsCollected = 0f;
     public static bool babyDinoAcquired = false;
     public static string FightingWith;
-    public static bool dinoDefeated = false;
+    public static bool TRexDefeated = false;
+    public static bool HerbDefeated = false;
+    public static bool BirdDefeated = false;
+    public static bool MarioDefeated = false;
+    public Transform lastKnownPosition;
 }
