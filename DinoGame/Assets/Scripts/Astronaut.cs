@@ -11,8 +11,13 @@ public class Astronaut : MonoBehaviour
 
     Rigidbody2D rigidBody2D;
 
+    public GameObject HerbDefeated;
+    public GameObject BirdDefeated;
+    public GameObject TRexDefeated;
+
     float horizontal; 
     float vertical;
+    public float speed = 10f;
 
     public Vector2 direction;
     Vector2 lastKnownDirection = Vector2.zero;
@@ -22,6 +27,15 @@ public class Astronaut : MonoBehaviour
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
+        if (GlobalVariables.inMainScene && GlobalVariables.HerbDefeated) {
+            rigidBody2D.position = HerbDefeated.transform.position;
+        }
+        if (GlobalVariables.inMainScene && GlobalVariables.BirdDefeated) {
+            rigidBody2D.position = BirdDefeated.transform.position;
+        }
+        if (GlobalVariables.inMainScene && GlobalVariables.TRexDefeated) {
+            rigidBody2D.position = TRexDefeated.transform.position;
+        }
     }
     
     // Update is called once per frame
@@ -54,8 +68,8 @@ public class Astronaut : MonoBehaviour
     void FixedUpdate() {
         // updates the position of the character based off of the values we recieved from Input
         Vector2 position = rigidBody2D.position;
-        position.x = position.x + 10f * horizontal * Time.deltaTime;
-        position.y = position.y + 10f * vertical * Time.deltaTime;
+        position.x = position.x + speed * horizontal * Time.deltaTime;
+        position.y = position.y + speed * vertical * Time.deltaTime;
         rigidBody2D.MovePosition(position);
     }
 }

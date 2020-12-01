@@ -34,9 +34,6 @@ public class T_Rex : MonoBehaviour
     else if (GlobalVariables.BirdDefeated && dinoNumber == 3) {
       Destroy(gameObject);
     }
-    else if (GlobalVariables.MarioDefeated && dinoNumber == 4) {
-      Destroy(gameObject);
-    }
   }
 
   void Update(){
@@ -64,7 +61,6 @@ public class T_Rex : MonoBehaviour
   }
 
   void OnTriggerEnter2D(Collider2D other) {
-    Debug.Log("fdjsaklfjds;kf");
     Astronaut player = other.GetComponent<Astronaut>();
     if (player) {
       if (dinoNumber == 1) {
@@ -76,10 +72,7 @@ public class T_Rex : MonoBehaviour
       else if (dinoNumber == 3) {
         GlobalVariables.FightingWith = "Bird";
       }
-      else if (dinoNumber == 4) {
-        GlobalVariables.FightingWith = "Mario";
-      }
-      
+
       SceneManager.LoadScene("Combat");
     }
   }

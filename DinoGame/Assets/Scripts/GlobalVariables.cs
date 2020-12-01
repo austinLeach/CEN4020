@@ -11,6 +11,5 @@ public class GlobalVariables : MonoBehaviour
     public static bool TRexDefeated = false;
     public static bool HerbDefeated = false;
     public static bool BirdDefeated = false;
-    public static bool MarioDefeated = false;
-    public Transform lastKnownPosition;
+    public static bool inMainScene = true;
 }

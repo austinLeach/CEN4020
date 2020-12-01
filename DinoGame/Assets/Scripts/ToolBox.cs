@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ToolBox : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class ToolBox : MonoBehaviour
             // Display message on screen to congratulate player for completing the puzzle
 
             Destroy(gameObject);  // removes the toolbox from the scene to signify that it has been collected already
+
+            SceneManager.LoadScene("end");
+
         }
     }
 }

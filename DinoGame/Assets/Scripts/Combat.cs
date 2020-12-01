@@ -19,7 +19,6 @@ public class Combat : MonoBehaviour
     public GameObject Trex; // will be one of these for each combatant
     public GameObject Herb;
     public GameObject Bird;
-    public GameObject Mario;
 
     public TMP_Text dialogue;
 
@@ -38,7 +37,6 @@ public class Combat : MonoBehaviour
         Trex.GetComponent<Renderer>().enabled = false; 
         Herb.GetComponent<Renderer>().enabled = false;
         Bird.GetComponent<Renderer>().enabled = false;
-        Mario.GetComponent<Renderer>().enabled = false; 
         FireBallImage.GetComponent<Renderer>().enabled = false;
         
         Debug.Log(GlobalVariables.FightingWith);
@@ -56,10 +54,6 @@ public class Combat : MonoBehaviour
         if (GlobalVariables.FightingWith == "Bird") {
             setMaxBossHealth(10);
             Bird.GetComponent<Renderer>().enabled = true;   
-        }
-        if (GlobalVariables.FightingWith == "Mario") {
-            setMaxBossHealth(10);
-            Mario.GetComponent<Renderer>().enabled = true;  
         }
         
         setMaxPlayerHealth(10);
@@ -86,9 +80,6 @@ public class Combat : MonoBehaviour
             if (GlobalVariables.FightingWith == "Bird") {
                 GlobalVariables.BirdDefeated = true; 
             }
-            if (GlobalVariables.FightingWith == "Mario") {
-                GlobalVariables.MarioDefeated = true;  
-            }
             SceneManager.LoadScene("SampleScene");
         }
         if (currentState == combatStates.Loss) {
@@ -111,8 +102,6 @@ public class Combat : MonoBehaviour
             else if (GlobalVariables.FightingWith == "Herb")
                 StartCoroutine(TRexTurn());
             else if (GlobalVariables.FightingWith == "Bird")
-                StartCoroutine(TRexTurn());
-            else if (GlobalVariables.FightingWith == "Mario")
                 StartCoroutine(TRexTurn());
         }
     }

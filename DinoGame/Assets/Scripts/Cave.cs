@@ -19,7 +19,8 @@ public class Cave : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         Astronaut player = other.GetComponent<Astronaut>();
         if (player) {
-           SceneManager.LoadScene("Title Scene");
+            GlobalVariables.inMainScene = false;
+           SceneManager.LoadScene("MazeScene");
         }
     }
 }
