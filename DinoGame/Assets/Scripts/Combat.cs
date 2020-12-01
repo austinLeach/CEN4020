@@ -6,25 +6,22 @@ using UnityEngine.UI;
 using TMPro;
 
 public enum combatStates { PlayersTurn, EnemiesTurn, Win, Loss }
-public enum FightingWith { dino }; // can be added on to for more combat scenarios
+public enum FightingWith { TRex }; // can be added on to for more combat scenarios
 public class Combat : MonoBehaviour
 {
-    public Slider dinoHealthSlider;
+
+    public Slider bossHealthSlider;
     public Slider playerHealthSlider;
     public GameObject FireBallImage;
     bool isFireBall = false;
     float fireBallTimer = 1f;
 
-<<<<<<< HEAD
     public GameObject Trex; // will be one of these for each combatant
     public GameObject Herb;
     public GameObject Bird;
     public GameObject Mario;
 
     public TMP_Text dialogue;
-=======
-    public GameObject dino;
->>>>>>> 2059c36c5cbf46320b129e95d472c7f67bb06825
 
     bool stunned = false;
 
@@ -32,10 +29,12 @@ public class Combat : MonoBehaviour
 
     public FightingWith fighting;
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< HEAD
         Trex.GetComponent<Renderer>().enabled = false; 
         Herb.GetComponent<Renderer>().enabled = false;
         Bird.GetComponent<Renderer>().enabled = false;
@@ -63,26 +62,6 @@ public class Combat : MonoBehaviour
             Mario.GetComponent<Renderer>().enabled = true;  
         }
         
-=======
-        currentState = combatStates.PlayersTurn;
-        switch (GlobalVariables.FightingWith){
-          case "TRex":
-            setMaxDinoHealth(25);
-            dino.GetComponent<Renderer>().enabled = true;
-            break;
-          case "Tricera":
-            setMaxDinoHealth(20);
-            dino.GetComponent<Renderer>().enabled = true;
-            break;
-          case "Veloc":
-            setMaxDinoHealth(10);
-            dino.GetComponent<Renderer>().enabled = true;
-            break;
-          default:
-            break;
-        }
-
->>>>>>> 2059c36c5cbf46320b129e95d472c7f67bb06825
         setMaxPlayerHealth(10);
     }
 
@@ -115,13 +94,13 @@ public class Combat : MonoBehaviour
         if (currentState == combatStates.Loss) {
             SceneManager.LoadScene("Combat");
         }
-
+        
     }
 
     void PlayerAttacks(int damage) {
-        setDinoHealth(damage);
+        setBossHealth(damage);
 
-        if (dinoHealthSlider.value <= 0) {
+        if (bossHealthSlider.value <= 0) {
             currentState = combatStates.Win;
         }
         else {
@@ -138,9 +117,9 @@ public class Combat : MonoBehaviour
         }
     }
 
-    IEnumerator dinoTurn() {
+    IEnumerator TRexTurn() {
         yield return new WaitForSeconds(1f);
-
+       
         if (!stunned) {
             setPlayerHealth(1); // default attack
             dialogue.text = "TRex stomped";
@@ -164,13 +143,10 @@ public class Combat : MonoBehaviour
     public void setMaxBossHealth(int health) {
         bossHealthSlider.maxValue = health;
         bossHealthSlider.value = health;
-    public void setMaxDinoHealth(int health) {
-        dinoHealthSlider.maxValue = health;
-        dinoHealthSlider.value = health;
     }
 
-    public void setDinoHealth(int health) {
-        dinoHealthSlider.value -= health;
+    public void setBossHealth(int health) {
+        bossHealthSlider.value -= health;
     }
 
     public void setMaxPlayerHealth(int health) {
@@ -195,26 +171,6 @@ public class Combat : MonoBehaviour
             dialogue.text = "Stun Missed";
         }
         PlayerAttacks(0);
-      float s = Random.Range(0, 100);
-      switch (GlobalVariables.FightingWith){
-        case "TRex":
-          if(s < 50){
-            stunned = true;
-          }
-          break;
-        case "Tricera":
-          if(s < 40){
-            stunned = true;
-          }
-          break;
-        case "Veloc":
-          if(s < 80){
-            stunned = true;
-          }
-          break;
-        default:
-          break;
-      }
     }
 
     public void FireBall() {

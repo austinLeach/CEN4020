@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class T_Rex : MonoBehaviour
 {
@@ -62,7 +63,8 @@ public class T_Rex : MonoBehaviour
     }
   }
 
-  void OnTriggerStay2D(Collider2D other) {
+  void OnTriggerEnter2D(Collider2D other) {
+    Debug.Log("fdjsaklfjds;kf");
     Astronaut player = other.GetComponent<Astronaut>();
     if (player) {
       if (dinoNumber == 1) {

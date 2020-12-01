@@ -343,7 +343,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1537aba247487e347b48375542d4e408, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3828,18 +3828,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01bc28134179c342ac56949a2a07e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dinoHealthSlider: {fileID: 1833510890}
+  bossHealthSlider: {fileID: 1833510890}
   playerHealthSlider: {fileID: 1721095517}
-<<<<<<< HEAD
   FireBallImage: {fileID: 51597543}
   Trex: {fileID: 630992779}
   Herb: {fileID: 1758345756}
   Bird: {fileID: 1643485288}
   Mario: {fileID: 326681712}
   dialogue: {fileID: 1252490539}
-=======
-  dino: {fileID: 630992779}
->>>>>>> 2059c36c5cbf46320b129e95d472c7f67bb06825
   currentState: 0
   fighting: 0
 --- !u!4 &2071204345

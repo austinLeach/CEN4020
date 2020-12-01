@@ -25,9 +25,9 @@ public class Dino : MonoBehaviour
     rigidBody2D = GetComponent<Rigidbody2D>();
     start = transform.position;
 
-    if (GlobalVariables.dinoDefeated) {
-      Destroy(gameObject);
-    }
+    // if (GlobalVariables.dinoDefeated) {
+    //   Destroy(gameObject);
+    // }
   }
 
   void Update(){
