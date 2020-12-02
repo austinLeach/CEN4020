@@ -9,6 +9,12 @@ public class babyDino : MonoBehaviour
     Transform target;   //what the dino will be following, in this case our player
     Rigidbody2D rigidBody2D;
 
+    public GameObject HerbDefeated;
+    public GameObject BirdDefeated;
+    public GameObject TRexDefeated;
+
+    public GameObject obstacle;
+
     float positioning = 1.5f;
 
    
@@ -16,6 +22,17 @@ public class babyDino : MonoBehaviour
     {
         astronaut.GetComponent<Astronaut>();
         rigidBody2D = GetComponent<Rigidbody2D>();
+        if (GlobalVariables.inMainScene && GlobalVariables.HerbDefeated) {
+            Debug.Log(HerbDefeated.transform.position);
+            transform.position = HerbDefeated.transform.position;
+            Debug.Log(rigidBody2D.position);
+        }
+        if (GlobalVariables.inMainScene && GlobalVariables.BirdDefeated) {
+            transform.position = BirdDefeated.transform.position;
+        }
+        if (GlobalVariables.inMainScene && GlobalVariables.TRexDefeated) {
+            transform.position = TRexDefeated.transform.position;
+        }
     }
 
     
@@ -36,6 +53,7 @@ public class babyDino : MonoBehaviour
             }
             // target.position.y - 1 is so it is at the feet of the astronaut
             transform.position = Vector3.MoveTowards(transform.position, new Vector2(target.position.x + positioning, target.position.y - 1.1f), speed * Time.deltaTime);
+            Destroy(obstacle);
         }
     }
 }

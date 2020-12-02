@@ -23,6 +23,7 @@ public class Combat : MonoBehaviour
     public TMP_Text dialogue;
 
     bool stunned = false;
+    bool charging = false;
 
     public combatStates currentState;
 
@@ -38,21 +39,18 @@ public class Combat : MonoBehaviour
         Herb.GetComponent<Renderer>().enabled = false;
         Bird.GetComponent<Renderer>().enabled = false;
         FireBallImage.GetComponent<Renderer>().enabled = false;
-        
-        Debug.Log(GlobalVariables.FightingWith);
 
         currentState = combatStates.PlayersTurn;    //currently only TRex is an option so it will always load the TRex fight
         if (GlobalVariables.FightingWith == "TRex") {
-            setMaxBossHealth(10);
+            setMaxBossHealth(12);
             Trex.GetComponent<Renderer>().enabled = true;   // used so the Trex sprite will render
         }
         else if (GlobalVariables.FightingWith == "Herb") {
             setMaxBossHealth(10);
             Herb.GetComponent<Renderer>().enabled = true;   
-            Debug.Log("fdhas");
         }
         if (GlobalVariables.FightingWith == "Bird") {
-            setMaxBossHealth(10);
+            setMaxBossHealth(15);
             Bird.GetComponent<Renderer>().enabled = true;   
         }
         
@@ -100,21 +98,86 @@ public class Combat : MonoBehaviour
             if (GlobalVariables.FightingWith == "TRex")
                 StartCoroutine(TRexTurn());
             else if (GlobalVariables.FightingWith == "Herb")
-                StartCoroutine(TRexTurn());
+                StartCoroutine(HerbTurn());
             else if (GlobalVariables.FightingWith == "Bird")
-                StartCoroutine(TRexTurn());
+                StartCoroutine(BirdTurn());
         }
     }
 
-    IEnumerator TRexTurn() {
+    IEnumerator HerbTurn() {
         yield return new WaitForSeconds(1f);
        
         if (!stunned) {
             setPlayerHealth(1); // default attack
-            dialogue.text = "TRex stomped";
+            dialogue.text = "Triceratops stomped";
         }
         else {
-            dialogue.text = "TRex was not able to attack";
+            dialogue.text = "Triceratops was not able to attack";
+            stunned = false;
+        }
+
+
+        if (playerHealthSlider.value <= 0) {
+            currentState = combatStates.Loss;
+        }
+        else {
+            // changes back to the players turn and waits for a option to be selected
+            currentState = combatStates.PlayersTurn;
+        }
+    }
+    IEnumerator BirdTurn() {
+        yield return new WaitForSeconds(1f);
+       
+        if (!stunned) {
+            if (!charging) {
+                charging = true;
+                dialogue.text = "Pterodactyl is charging up an attack";
+            }
+            else {
+                charging = false;
+                setPlayerHealth(4); //charged attack
+                dialogue.text = "Pterodactyl swooped in";
+            }
+        }
+        else {
+            dialogue.text = "Pterodactyl was not able to attack. Canceled charging attack.";
+            stunned = false;
+            charging = false;
+        }
+
+
+        if (playerHealthSlider.value <= 0) {
+            currentState = combatStates.Loss;
+        }
+        else {
+            // changes back to the players turn and waits for a option to be selected
+            currentState = combatStates.PlayersTurn;
+        }
+    }
+    IEnumerator TRexTurn() {
+        yield return new WaitForSeconds(1f);
+       
+        if (!stunned) {
+            if (charging) {
+                setPlayerHealth(5);
+                charging = false;
+                dialogue.text = "TRex charged in.";
+            }
+            else if (Random.Range(0, 100) < 50 && !charging) {
+                charging = true;
+                dialogue.text = "TRex is charging an attack.";
+                
+            }
+            else if (!charging) {
+                setPlayerHealth(2); // default attack
+                dialogue.text = "TRex stomped";
+            }
+            
+            
+        }
+        else {
+            dialogue.text = "TRex was not able to attack. Canceled charging attack.";
+            charging = false;
             stunned = false;
         }
 
@@ -152,7 +215,7 @@ public class Combat : MonoBehaviour
         if (currentState == combatStates.EnemiesTurn) {
             return;
         }
-        if (Random.Range(0, 100) < 90) {
+        if (Random.Range(0, 100) < 80) {
             stunned = true;
             dialogue.text = "Stunned";
         }
