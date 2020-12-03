@@ -12,4 +12,5 @@ public class GlobalVariables : MonoBehaviour
     public static bool HerbDefeated = false;
     public static bool BirdDefeated = false;
     public static bool inMainScene = true;
+    public static float leversPressed = 0f;
 }

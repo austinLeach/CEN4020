@@ -59,8 +59,14 @@ public class Astronaut : MonoBehaviour
         //checks in the direction the player is looking if there is the babyDino
         if (Input.GetKeyDown(KeyCode.E)) {
             RaycastHit2D hit = Physics2D.Raycast(GetComponent<Rigidbody2D>().position, direction, 4f,  LayerMask.GetMask("BabyDino"));
+            RaycastHit2D lever = Physics2D.Raycast(GetComponent<Rigidbody2D>().position, direction, 4f,  LayerMask.GetMask("Levers"));
             if(hit.collider) {
                 GlobalVariables.babyDinoAcquired = true;
+            }
+            if (lever.collider) {
+                Debug.Log("Here");
+                lever.collider.GetComponent<SpriteRenderer>().flipX = true;
+                GlobalVariables.leversPressed++;
             }
         }
     }
