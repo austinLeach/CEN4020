@@ -14,6 +14,8 @@ public class Astronaut : MonoBehaviour
     public GameObject HerbDefeated;
     public GameObject BirdDefeated;
     public GameObject TRexDefeated;
+    public AudioSource musi;
+    
 
     float horizontal; 
     float vertical;
@@ -36,6 +38,8 @@ public class Astronaut : MonoBehaviour
         if (GlobalVariables.inMainScene && GlobalVariables.TRexDefeated) {
             rigidBody2D.position = TRexDefeated.transform.position;
         }
+        musi = GetComponent<AudioSource>();
+        musi.Play();
     }
     
     // Update is called once per frame

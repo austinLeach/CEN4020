@@ -3,7 +3,10 @@ guid: 2516d105ae5ffa6499615d0275e11ee1
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - mazeTransition: {instanceID: 0}
+  - leverSound: {instanceID: 0}
+  - activated: {fileID: 8300000, guid: c956b0d89fb3d1d4393f2dbb3ebe7b60, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
