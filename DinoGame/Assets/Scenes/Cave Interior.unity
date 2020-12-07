@@ -65022,6 +65022,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Astronaut
       objectReference: {fileID: 0}
+    - target: {fileID: 6789781271656675357, guid: e3d82fe551ec0964bbc3c634700b4e9f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a6ecac679ec94bc3b3d3ebbbc24057c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3d82fe551ec0964bbc3c634700b4e9f, type: 3}
 --- !u!1001 &1861342896
