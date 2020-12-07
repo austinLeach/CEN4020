@@ -151,7 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mazeTransition: {fileID: 0}
-  leverSound: {fileID: 7996781301096448122}
+  rockSound: {fileID: 7996781301096448122}
+  rockMoved: {fileID: 8300000, guid: 98f0f24514eddd342a1a36d164745d6d, type: 3}
 --- !u!82 &7996781301096448122
 AudioSource:
   m_ObjectHideFlags: 0
@@ -162,7 +163,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c956b0d89fb3d1d4393f2dbb3ebe7b60, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 98f0f24514eddd342a1a36d164745d6d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

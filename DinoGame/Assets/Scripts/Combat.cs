@@ -28,7 +28,7 @@ public class Combat : MonoBehaviour
     public combatStates currentState;
 
     public FightingWith fighting;
-
+    public AudioSource combatTunes;
 
 
 
@@ -55,6 +55,8 @@ public class Combat : MonoBehaviour
         }
         
         setMaxPlayerHealth(10);
+        combatTunes = GetComponent<AudioSource>();
+        combatTunes.Play();
     }
 
     void Update() {

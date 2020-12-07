@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinCollec: {fileID: 8452515108545306402}
+  coinss: {fileID: 8300000, guid: 72ba1e964b7b3484f96c3ee34b6e4e9b, type: 3}
 --- !u!82 &8452515108545306402
 AudioSource:
   m_ObjectHideFlags: 0
@@ -145,7 +146,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5000
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

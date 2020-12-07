@@ -24915,6 +24915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mazeTransition: {fileID: 1277808299}
+  leverSound: {fileID: 0}
 --- !u!1 &320127469
 GameObject:
   m_ObjectHideFlags: 0
@@ -64671,6 +64672,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91951a10b4a37364189f3ec2b8f89bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &491099343 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7996781301096448122, guid: 75b795f6415ad1d49b36be2cb62e2b05, type: 3}
+  m_PrefabInstance: {fileID: 2486668571987285640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &854559401
 GameObject:
   m_ObjectHideFlags: 0
@@ -92033,5 +92039,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6874229685458518107, guid: 75b795f6415ad1d49b36be2cb62e2b05, type: 3}
+      propertyPath: rockSound
+      value: 
+      objectReference: {fileID: 491099343}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75b795f6415ad1d49b36be2cb62e2b05, type: 3}
